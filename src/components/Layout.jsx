@@ -104,11 +104,11 @@ export default function Layout({ children }) {
             >
               <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
                 <span className="font-heading font-bold text-background text-lg">
-                  S&amp;J
+                  K&amp;D
                 </span>
               </div>
               <span className="font-heading text-xl font-semibold text-primary hidden sm:block">
-                Sarah &amp; James
+                Keval &amp; Drashti
               </span>
             </motion.a>
 
