@@ -1,62 +1,41 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import GaneshOverlay from './GaneshOverlay'
-import GrahShantiOverlay from './GrahShantiOverlay'
-import MameruOverlay from './MameruOverlay'
-import HaldiOverlay from './HaldiOverlay'
-import JamanvarOverlay from './JamanvarOverlay'
-import GarbaOverlay from './GarbaOverlay'
-import LaganOverlay from './LaganOverlay'
 
 /**
- * Events Component - Premium Minimal Design
+ * Events Component
+ * 
+ * Features:
+ * - Display wedding events with time, venue, address, dress code
+ * - Add to Calendar with .ics download and Google Calendar link
+ * - Subtle heart confetti animation on button click
+ * - Responsive card layout
+ * 
+ * @param {Object} props
+ * @param {Array} props.events - Array of event objects
  */
 
-// Event themes - warm, terracotta-inspired colors per event
-const eventThemes = {
-  'ganesh': {
-    accent: '#C65D1E',    // Burnt Orange
-    light: '#F5E6D3',
-  },
-  'Grah Shanti': {
-    accent: '#D4774A',    // Warm Terracotta variation
-    light: '#F5E6D3',
-  },
-  'Mameru': {
-    accent: '#B85A30',    // Deep Burnt Orange
-    light: '#EED9C4',
-  },
-  'Haldi': {
-    accent: '#E89A6F',    // Light Terracotta
-    light: '#F5E6D3',
-  },
-  'Jamnavar': {
-    accent: '#C97A56',    // Terracotta
-    light: '#EED9C4',
-  },
-  'Rasgarba': {
-    accent: '#D67347',    // Medium Burnt Orange
-    light: '#F5E6D3',
-  },
-  'Lagan': {
-    accent: '#C65D1E',    // Burnt Orange
-    light: '#EED9C4',
-  },
+// Event-specific background images
+const eventBackgrounds = {
+  'ganesh': 'https://m.media-amazon.com/images/I/71uvdGbQopL._AC_UF350,350_QL80_.jpg', // Ganesh statue with flowers
+  'grah shanti': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRThtNAywUbbIcFsffnwlx8K_aqQGOsjMhpSw&s', // Sacred ritual setup
+  'mameru': 'https://cdn.shopify.com/s/files/1/2090/3151/files/bridal_box_new_image_1024x1024.jpg?v=1543841765', // Traditional Indian gifts
+  'haldi': 'https://varniya.com/cdn/shop/articles/Trendy_Haldi_Ceremony_Decoration_Ideas_for_Function_at_Home_520x500_520x500_520x500_520x500_520x500_520x500_520x500_520x500_520x500_520x500_520x50_ad08cef9-b9f3-4e96-a673-4d3bd37d4097.png?v=1748863374', // Turmeric/yellow flowers
+  'jamnavar': 'https://pub-95ccf2d427eb4955a7de1c41d3fa57dd.r2.dev/blog-g3fashion-com/2021/04/Wedding-CATERERS-in-surat-scaled.jpg', // Indian feast/food
+  'rasgarba': 'https://i0.wp.com/wovensouls.org/wp-content/uploads/2013/08/800px-navratri_garba.jpg?fit=800%2C534&ssl=1&w=640', // Garba dancers/dandiya
+  'lagan': 'https://img.freepik.com/premium-photo/traditional-havan-homan-ritual-indian-wedding_665346-151982.jpg?w=360', // Wedding mandap
 }
 
-const defaultTheme = {
-  accent: '#C65D1E',    // Burnt Orange
-  light: '#F5E6D3',
-}
+// Default fallback image
+const defaultBackground = 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80'
 
 // Default events data organized by day
 const defaultEvents = [
   {
     id: 1,
-    name: 'ganesh',
+    name: 'Ganesh',
     date: '2026-10-14',
-    startTime: '09:00',
-    endTime: '10:00',
+    startTime: '18:00',
+    endTime: '21:00',
     venue: 'Vineyard Terrace Restaurant',
     address: '456 Wine Country Road, Napa Valley, CA 94558',
     dressCode: 'smart-casual',
@@ -65,9 +44,9 @@ const defaultEvents = [
   {
     id: 2,
     name: 'Grah Shanti',
-    date: '2026-10-14',
-    startTime: '10:30',
-    endTime: '12:00',
+    date: '2026-10-15',
+    startTime: '15:00',
+    endTime: '16:00',
     venue: 'The Grand Estate Chapel',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -76,9 +55,9 @@ const defaultEvents = [
   {
     id: 3,
     name: 'Mameru',
-    date: '2026-10-14',
-    startTime: '14:00',
-    endTime: '15:30',
+    date: '2026-10-15',
+    startTime: '16:30',
+    endTime: '17:30',
     venue: 'Terrace Garden',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -87,9 +66,9 @@ const defaultEvents = [
   {
     id: 4,
     name: 'Haldi',
-    date: '2026-10-14',
-    startTime: '16:00',
-    endTime: '17:30',
+    date: '2026-10-15',
+    startTime: '18:00',
+    endTime: '20:00',
     venue: 'Grand Ballroom',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -98,9 +77,9 @@ const defaultEvents = [
   {
     id: 5,
     name: 'Jamnavar',
-    date: '2026-10-14',
-    startTime: '18:00',
-    endTime: '19:30',
+    date: '2026-10-15',
+    startTime: '20:00',
+    endTime: '23:30',
     venue: 'Grand Ballroom',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -109,9 +88,9 @@ const defaultEvents = [
   {
     id: 6,
     name: 'Rasgarba',
-    date: '2026-10-14',
-    startTime: '20:00',
-    endTime: '23:30',
+    date: '2026-10-16',
+    startTime: '10:00',
+    endTime: '12:30',
     venue: 'Garden Pavilion',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'casual',
@@ -120,7 +99,7 @@ const defaultEvents = [
   {
     id: 7,
     name: 'Lagan',
-    date: '2026-10-15',
+    date: '2026-10-16',
     startTime: '10:00',
     endTime: '12:30',
     venue: 'Garden Pavilion',
@@ -246,282 +225,358 @@ function formatDate(date) {
   })
 }
 
-// Premium Minimal Event Overlay
-function EventOverlay({ event, isOpen, onClose }) {
-  const theme = eventThemes[event?.name] || defaultTheme
+// Heart confetti animation component
+function HeartConfetti() {
+  const hearts = Array.from({ length: 8 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100 - 50,
+    rotation: Math.random() * 360,
+    delay: Math.random() * 0.2,
+  }))
 
-  useEffect(() => {
-    const handleEscape = (e) => e.key === 'Escape' && onClose()
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
-    }
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = ''
-    }
-  }, [isOpen, onClose])
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {hearts.map((heart) => (
+        <motion.div
+          key={heart.id}
+          initial={{ y: 0, opacity: 1, scale: 0 }}
+          animate={{
+            y: -60,
+            opacity: 0,
+            scale: 1,
+            x: heart.x,
+            rotate: heart.rotation,
+          }}
+          transition={{
+            duration: 1.2,
+            delay: heart.delay,
+            ease: 'easeOut',
+          }}
+          className="absolute bottom-0 left-1/2 text-blush"
+          style={{ fontSize: '1.2rem' }}
+        >
+          ♥
+        </motion.div>
+      ))}
+    </div>
+  )
+}
 
+// Premium Full-Screen Event Detail Overlay
+function EventDetailOverlay({ event, isOpen, onClose }) {
   if (!event) return null
 
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.address)}`
+  
+  // Get event-specific background image
+  const backgroundImage = eventBackgrounds[event.name.toLowerCase()] || defaultBackground
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Background Image Layer - Fades in then blurs */}
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ 
+              opacity: 1,
+              scale: 1,
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed inset-0 z-50"
+            style={{
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+
+          {/* Blur overlay - appears after image */}
+          <motion.div
+            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            animate={{ 
+              opacity: 1,
+              backdropFilter: 'blur(40px)',
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed inset-0 z-50"
+            style={{
+              background: 'radial-gradient(circle at 20% 30%, rgba(198, 93, 30, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(107, 94, 80, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(62, 42, 36, 0.08) 0%, transparent 70%)'
+            }}
+          />
+
+          {/* Brown Texture Overlay with uneven pattern */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.12 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed inset-0 z-50"
             onClick={onClose}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
+            style={{
+              background: `
+                radial-gradient(ellipse at 15% 25%, rgba(245, 230, 211, 0.35) 0%, transparent 35%),
+                radial-gradient(ellipse at 85% 15%, rgba(198, 93, 30, 0.20) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(107, 94, 80, 0.28) 0%, transparent 45%),
+                radial-gradient(ellipse at 25% 75%, rgba(90, 74, 63, 0.24) 0%, transparent 38%),
+                radial-gradient(ellipse at 50% 50%, rgba(245, 230, 211, 0.32) 0%, transparent 55%),
+                radial-gradient(circle at 40% 60%, rgba(122, 107, 95, 0.22) 0%, transparent 42%),
+                linear-gradient(135deg, rgba(245, 230, 211, 0.38) 0%, rgba(198, 93, 30, 0.22) 50%, rgba(107, 94, 80, 0.30) 100%)
+              `,
+              mixBlendMode: 'multiply',
+              opacity: 0.75,
+              filter: 'blur(80px)'
+            }}
           />
 
-          {/* Overlay */}
-          <div className="fixed inset-x-0 top-0 z-50 flex justify-center pt-6 md:pt-10 px-4 pointer-events-none overflow-y-auto max-h-screen pb-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 700, mass: 0.8 }}
-              className="relative w-full max-w-md pointer-events-auto bg-white rounded-2xl shadow-xl overflow-hidden"
-            >
-              {/* Close button */}
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-8 md:p-12 pointer-events-none"
+          >
+            <div className="pointer-events-auto relative w-full h-full flex items-center justify-center">
+              {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 text-secondary/60 hover:text-primary transition-colors z-10"
+                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 hover:bg-primary/20 backdrop-blur-sm transition-colors group border border-primary/25"
+                aria-label="Close"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg className="w-5 h-5 transition-colors" style={{ color: '#2A1D16' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-
-              {/* Content */}
-              <div className="p-6">
-                {/* Header */}
-                <motion.div
+              
+              <div className="relative space-y-6 text-center max-w-2xl">
+                {/* Event Name */}
+                <motion.h2
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.04, duration: 0.12 }}
-                  className="mb-5"
+                  transition={{ delay: 0.7, duration: 0.8 }}
+                  className="text-6xl md:text-7xl mb-2"
+                  style={{ 
+                    fontFamily: "'Great Vibes', cursive",
+                    lineHeight: 1.2,
+                    color: '#2A1D16',
+                    letterSpacing: '0.02em'
+                  }}
                 >
-                  <h3 className="text-2xl font-normal text-primary mb-1" style={{ fontFamily: 'Pacifico, cursive' }}>
-                    {event.name}
-                  </h3>
-                  <p className="text-sm text-secondary">
-                    {formatDate(event.date)}
-                  </p>
+                  {event.name}
+                </motion.h2>
+
+                {/* Decorative Divider */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.9, duration: 0.8 }}
+                  className="flex items-center justify-center gap-3 py-2"
+                >
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent to-secondary/30" />
+                  <svg className="w-4 h-4" style={{ color: '#C65D1E' }} fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                  </svg>
+                  <div className="h-px w-16 bg-gradient-to-l from-transparent to-secondary/30" />
                 </motion.div>
+
+                {/* Date */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.0, duration: 0.7 }}
+                  className="text-lg tracking-wide"
+                  style={{ 
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: '#4A3A2F',
+                    fontWeight: 500
+                  }}
+                >
+                  {formatDate(event.date)}
+                </motion.p>
+
+                {/* Time */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.1, duration: 0.7 }}
+                  className="text-2xl tracking-wider"
+                  style={{ 
+                    fontFamily: "'Crimson Text', serif",
+                    fontStyle: 'italic',
+                    color: '#C65D1E',
+                    fontWeight: 400
+                  }}
+                >
+                  {formatTime(event.startTime)} — {formatTime(event.endTime)}
+                </motion.p>
 
                 {/* Description */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.06, duration: 0.12 }}
-                  className="text-secondary/90 text-[15px] leading-relaxed mb-6"
+                  transition={{ delay: 1.2, duration: 0.8 }}
+                  className="leading-relaxed max-w-xl mx-auto pt-4"
+                  style={{ 
+                    fontFamily: "'Crimson Text', serif",
+                    fontSize: '1.0625rem',
+                    lineHeight: 1.85,
+                    color: '#3A2D24',
+                    fontWeight: 400
+                  }}
                 >
                   {event.description}
                 </motion.p>
 
-                {/* Time & Location */}
+                {/* Divider */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.08, duration: 0.12 }}
-                  className="rounded-xl p-4 mb-5"
-                  style={{ backgroundColor: theme.light }}
-                >
-                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-black/5">
-                    <div 
-                      className="w-9 h-9 rounded-lg flex items-center justify-center"
-                      style={{ backgroundColor: `${theme.accent}15` }}
-                    >
-                      <svg className="w-[18px] h-[18px]" style={{ color: theme.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-base font-medium text-primary">
-                        {formatTime(event.startTime)} — {formatTime(event.endTime)}
-                      </p>
-                    </div>
-                  </div>
+                  transition={{ delay: 1.3, duration: 0.6 }}
+                  className="h-px w-24 bg-secondary/25 mx-auto my-8"
+                />
 
-                  <div className="flex items-start gap-3">
-                    <div 
-                      className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: `${theme.accent}15` }}
-                    >
-                      <svg className="w-[18px] h-[18px]" style={{ color: theme.accent }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                      </svg>
-                    </div>
-                    <div className="min-w-0 -mt-0.5">
-                      <p className="text-base font-medium text-primary">{event.venue}</p>
-                      <p className="text-sm text-secondary/70">{event.address}</p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Map link */}
-                <motion.a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.1, duration: 0.12 }}
-                  className="flex items-center justify-between p-3 rounded-xl border border-border/60 hover:border-border hover:bg-surface/50 transition-all mb-5 group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-surface flex items-center justify-center">
-                      <svg className="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-                      </svg>
-                    </div>
-                    <span className="text-sm text-primary">View on Google Maps</span>
-                  </div>
-                  <svg className="w-4 h-4 text-secondary/40 group-hover:text-secondary transition-colors group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                  </svg>
-                </motion.a>
-
-                {/* Dress code */}
+                {/* Venue */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.12, duration: 0.12 }}
-                  className="flex items-center justify-center gap-2 py-3 border-t border-border/40"
+                  transition={{ delay: 1.4, duration: 0.7 }}
+                  className="space-y-2"
                 >
-                  <span className="text-sm text-secondary">
-                    Attire: <span className="font-medium text-primary capitalize">{event.dressCode}</span>
-                  </span>
+                  <p className="text-xl" 
+                    style={{ 
+                      fontFamily: "'Playfair Display', serif",
+                      fontStyle: 'italic',
+                      color: '#2A1D16',
+                      fontWeight: 600
+                    }}
+                  >
+                    {event.venue}
+                  </p>
+                  <p className="text-sm" style={{ 
+                    fontFamily: "'Cormorant Garamond', serif",
+                    color: '#4A3A2F',
+                    fontWeight: 400,
+                    letterSpacing: '0.01em'
+                  }}>
+                    {event.address}
+                  </p>
                 </motion.div>
+
+                {/* Map Preview */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.5, duration: 0.8 }}
+                  className="pt-4"
+                >
+                  <a
+                    href={googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block group"
+                  >
+                    <div className="bg-cream/30 backdrop-blur-sm rounded-2xl p-4 hover:bg-cream/45 transition-all duration-300 border border-secondary/20">
+                      <div className="flex items-center justify-center gap-2 transition-colors"
+                        style={{ 
+                          color: '#3A2D24'
+                        }}
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span className="text-sm tracking-wide" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500 }}>Open in Google Maps</span>
+                        <svg className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </motion.div>
+
+                {/* Subtle close hint */}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.7, duration: 0.6 }}
+                  className="text-xs pt-6"
+                  style={{ 
+                    fontFamily: "'Crimson Text', serif",
+                    fontStyle: 'italic',
+                    color: '#5A4A3F',
+                    opacity: 0.75
+                  }}
+                >
+                  Click outside to close
+                </motion.p>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>
   )
 }
 
-// Minimal Event Card
-// Minimal Event Card
-function EventCard({ event, onClick }) {
-  const theme = eventThemes[event.name] || defaultTheme
-
+// Event Row Component - Luxury Printed Invitation Style
+function EventRow({ event, onClick }) {
   return (
-    <motion.article
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.16 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onClick}
-      className="group bg-white border border-border/60 rounded-xl p-5 soft-shadow hover:shadow-lg hover:border-gold/30 transition-all duration-200 cursor-pointer relative"
+      className="group py-6 border-b border-secondary/10 last:border-b-0 cursor-pointer transition-all duration-500 hover:pl-2"
     >
-      {/* Subtle click indicator for Ganesh event */}
-        {event.name.toLowerCase() === 'ganesh' && (
-        <motion.div
-          className="absolute top-3 right-3"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.35 }}
-          whileHover={{ opacity: 0.6 }}
-          transition={{ duration: 0.12 }}
-        >
-          <span
-            className="text-[10px] tracking-widest uppercase group-hover:opacity-80 transition-opacity"
+      <div className="flex items-center justify-between gap-6">
+        {/* Time */}
+        <div className="flex-shrink-0 min-w-[100px]">
+          <p 
+            className="text-base md:text-lg tracking-wide"
             style={{
-              fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+              fontFamily: "'Crimson Text', serif",
+              fontStyle: 'italic',
               color: '#C65D1E',
-              letterSpacing: '0.12em',
+              fontWeight: 400
             }}
           >
-            View
-          </span>
-        </motion.div>
-      )}
-
-      <div className="flex items-center gap-4">
-        {/* Time indicator */}
-        <div 
-          className="w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0"
-          style={{ backgroundColor: theme.light }}
-        >
-          <span className="text-lg font-medium" style={{ color: theme.accent }}>
-            {formatTime(event.startTime).split(':')[0]}
-          </span>
-          <span className="text-[10px] uppercase tracking-wide text-secondary/60">
-            {formatTime(event.startTime).split(' ')[1]}
-          </span>
-        </div>
-
-        {/* Event info */}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-lg font-normal text-primary group-hover:text-gold transition-colors truncate" style={{ fontFamily: 'Pacifico, cursive' }}>
-            {event.name}
-          </h3>
-          <p className="text-sm text-secondary/70 truncate">
-            {event.venue}
+            {formatTime(event.startTime)}
           </p>
         </div>
 
-        {/* Arrow */}
-        <div className="w-8 h-8 rounded-full flex items-center justify-center bg-surface group-hover:bg-border/30 transition-colors flex-shrink-0">
-          <svg className="w-4 h-4 text-secondary/50 group-hover:text-secondary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        {/* Event Name */}
+        <div className="flex-1">
+          <h3 
+            className="text-2xl md:text-3xl transition-all duration-500 group-hover:text-gold"
+            style={{
+              fontFamily: "'Great Vibes', cursive",
+              color: '#3E2A24',
+              lineHeight: 1.3,
+              letterSpacing: '0.01em'
+            }}
+          >
+            {event.name}
+          </h3>
+        </div>
+
+        {/* Arrow indicator */}
+        <div className="flex-shrink-0 opacity-30 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-1">
+          <svg className="w-5 h-5" style={{ color: '#C65D1E' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   )
 }
 
 // Main Events Component with day-wise grouping
-export default function Events({ events = defaultEvents, title = 'Event Schedule' }) {
+export default function Events({ events = defaultEvents, title = 'Celebrate With Us' }) {
   const [selectedEvent, setSelectedEvent] = useState(null)
-  const [ganeshEvent, setGaneshEvent] = useState(null)
-  const [grahShantiEvent, setGrahShantiEvent] = useState(null)
-  const [mameruEvent, setMameruEvent] = useState(null)
-  const [haldiEvent, setHaldiEvent] = useState(null)
-  const [jamanvarEvent, setJamanvarEvent] = useState(null)
-  const [garbaEvent, setGarbaEvent] = useState(null)
-  const [laganEvent, setLaganEvent] = useState(null)
-
-  // Close overlay handler
-  const handleClose = useCallback(() => setSelectedEvent(null), [])
-  const handleGaneshClose = useCallback(() => setGaneshEvent(null), [])
-  const handleGrahShantiClose = useCallback(() => setGrahShantiEvent(null), [])
-  const handleMameruClose = useCallback(() => setMameruEvent(null), [])
-  const handleHaldiClose = useCallback(() => setHaldiEvent(null), [])
-  const handleJamanvarClose = useCallback(() => setJamanvarEvent(null), [])
-  const handleGarbaClose = useCallback(() => setGarbaEvent(null), [])
-  const handleLaganClose = useCallback(() => setLaganEvent(null), [])
-
-  // Route click to the appropriate overlay
-  const handleEventClick = useCallback((event) => {
-    if (event.name.toLowerCase() === 'ganesh') {
-      setGaneshEvent(event)
-    } else if (event.name.toLowerCase() === 'grah shanti') {
-      setGrahShantiEvent(event)
-    } else if (event.name.toLowerCase() === 'mameru') {
-      setMameruEvent(event)
-    } else if (event.name.toLowerCase() === 'haldi') {
-      setHaldiEvent(event)
-    } else if (event.name.toLowerCase() === 'jamnavar') {
-      setJamanvarEvent(event)
-    } else if (event.name.toLowerCase() === 'rasgarba') {
-      setGarbaEvent(event)
-    } else if (event.name.toLowerCase() === 'lagan') {
-      setLaganEvent(event)
-    } else {
-      setSelectedEvent(event)
-    }
-  }, [])
 
   // Group events by date
   const eventsByDate = events.reduce((acc, event) => {
@@ -538,119 +593,106 @@ export default function Events({ events = defaultEvents, title = 'Event Schedule
 
   return (
     <section
-      className="relative py-16 md:py-24 bg-background"
+      className="relative py-20 md:py-32 bg-gradient-to-b from-cream/20 via-background to-cream/10"
       aria-labelledby="events-heading"
     >
       {/* Event Detail Overlay */}
-      <EventOverlay
+      <EventDetailOverlay
         event={selectedEvent}
         isOpen={selectedEvent !== null}
-        onClose={handleClose}
+        onClose={() => setSelectedEvent(null)}
       />
 
-      {/* Ganesh Premium Animated Overlay */}
-      <GaneshOverlay
-        event={ganeshEvent}
-        isOpen={ganeshEvent !== null}
-        onClose={handleGaneshClose}
-      />
-
-      {/* Grah Shanti Premium Animated Overlay */}
-      <GrahShantiOverlay
-        event={grahShantiEvent}
-        isOpen={grahShantiEvent !== null}
-        onClose={handleGrahShantiClose}
-      />
-
-      {/* Mameru Premium Animated Overlay */}
-      <MameruOverlay
-        event={mameruEvent}
-        isOpen={mameruEvent !== null}
-        onClose={handleMameruClose}
-      />
-
-      {/* Haldi Premium Animated Overlay */}
-      <HaldiOverlay
-        event={haldiEvent}
-        isOpen={haldiEvent !== null}
-        onClose={handleHaldiClose}
-      />
-
-      {/* Jamanvar Premium Animated Overlay */}
-      <JamanvarOverlay
-        event={jamanvarEvent}
-        isOpen={jamanvarEvent !== null}
-        onClose={handleJamanvarClose}
-      />
-
-      {/* Garba Premium Animated Overlay */}
-      <GarbaOverlay
-        event={garbaEvent}
-        isOpen={garbaEvent !== null}
-        onClose={handleGarbaClose}
-      />
-
-      {/* Lagan Premium Animated Overlay */}
-      <LaganOverlay
-        event={laganEvent}
-        isOpen={laganEvent !== null}
-        onClose={handleLaganClose}
-      />
-
-      <div className="max-w-2xl mx-auto px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Heading */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.24 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-16 md:mb-24"
         >
           <h2
             id="events-heading"
-            className="text-3xl md:text-4xl font-normal text-primary mb-3"
-            style={{ fontFamily: 'Pacifico, cursive' }}
+            className="text-5xl md:text-6xl lg:text-7xl mb-6"
+            style={{
+              fontFamily: "'Great Vibes', cursive",
+              color: '#3E2A24',
+              lineHeight: 1.2
+            }}
           >
             {title}
           </h2>
-          <p className="text-secondary/80">
-            A weekend of celebration and love
+          
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-secondary/20" />
+            <svg className="w-3 h-3" style={{ color: '#C65D1E' }} fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+            </svg>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-secondary/20" />
+          </div>
+          
+          <p 
+            className="text-base md:text-lg max-w-xl mx-auto"
+            style={{
+              fontFamily: "'Crimson Text', serif",
+              color: '#5A4A3F',
+              lineHeight: 1.8,
+              fontWeight: 400
+            }}
+          >
+            Join us for a celebration of love and unforgettable memories
           </p>
         </motion.div>
 
         {/* Day-wise Events */}
-        <div className="space-y-10">
+        <div className="space-y-20">
           {sortedDates.map((date, dayIndex) => {
             const dayEvents = eventsByDate[date]
             const dateObj = new Date(date + 'T00:00:00')
             const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' })
-            const monthDay = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+            const monthDay = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
 
             return (
               <motion.div
                 key={date}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.18, delay: dayIndex * 0.02 }}
+                transition={{ duration: 0.9, delay: dayIndex * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                {/* Day Header - Minimal */}
-                <div className="flex items-center gap-3 mb-4 px-1">
-                  <span className="text-lg font-normal text-primary" style={{ fontFamily: 'Pacifico, cursive' }}>
+                {/* Day Header */}
+                <div className="mb-10">
+                  <h3 
+                    className="text-3xl md:text-4xl mb-2"
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontStyle: 'italic',
+                      color: '#3E2A24',
+                      fontWeight: 600
+                    }}
+                  >
                     {dayName}
-                  </span>
-                  <span className="text-sm text-secondary/60">
+                  </h3>
+                  <p
+                    className="text-sm md:text-base tracking-wide"
+                    style={{
+                      fontFamily: "'Cormorant Garamond', serif",
+                      color: '#6B5E50',
+                      fontWeight: 400
+                    }}
+                  >
                     {monthDay}
-                  </span>
+                  </p>
                 </div>
 
                 {/* Events for this day */}
-                <div className="space-y-2">
+                <div>
                   {dayEvents.map((event) => (
-                    <EventCard
+                    <EventRow
                       key={event.id}
                       event={event}
-                      onClick={() => handleEventClick(event)}
+                      onClick={() => setSelectedEvent(event)}
                     />
                   ))}
                 </div>

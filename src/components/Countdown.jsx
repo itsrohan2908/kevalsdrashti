@@ -14,7 +14,7 @@ import { motion } from 'framer-motion'
 
 export default function Countdown({ 
   targetDate = '2026-10-15T16:00:00',
-  title = 'Counting Down To'
+  title = 'Until We Say "I Do"'
 }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
@@ -42,224 +42,133 @@ export default function Countdown({
   }, [targetDate])
 
   const units = [
-    { value: timeLeft.days, label: 'Days', plural: 'Days' },
-    { value: timeLeft.hours, label: 'Hour', plural: 'Hours' },
-    { value: timeLeft.minutes, label: 'Minute', plural: 'Minutes' },
-    { value: timeLeft.seconds, label: 'Second', plural: 'Seconds' },
+    { value: timeLeft.days, label: 'Days' },
+    { value: timeLeft.hours, label: 'Hours' },
+    { value: timeLeft.minutes, label: 'Minutes' },
+    { value: timeLeft.seconds, label: 'Seconds' },
   ]
 
   return (
-    <section className="relative py-12 md:py-16 bg-gradient-to-b from-background via-surface to-background overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section className="relative py-16 md:py-24 bg-gradient-to-b from-cream/30 via-background to-cream/20 overflow-hidden">
+      {/* Subtle decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         <div 
-          className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full opacity-[0.03]"
+          className="absolute top-1/2 left-1/3 w-96 h-96 rounded-full"
           style={{ 
-            background: 'radial-gradient(circle, #C65D1E 0%, transparent 70%)',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-        <div 
-          className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full opacity-[0.03]"
-          style={{ 
-            background: 'radial-gradient(circle, #C97A56 0%, transparent 70%)',
-            transform: 'translate(50%, -50%)',
+            background: 'radial-gradient(circle, rgba(198, 93, 30, 0.05) 0%, transparent 70%)',
+            transform: 'translate(-50%, -50%) scale(1.5)',
+            filter: 'blur(60px)'
           }}
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12 md:mb-16"
         >
-          <p className="text-sm sm:text-base uppercase tracking-[0.3em] text-secondary mb-2">
+          <h2 
+            className="text-4xl md:text-5xl lg:text-6xl mb-4"
+            style={{ 
+              fontFamily: "'Great Vibes', cursive",
+              color: '#3E2A24',
+              lineHeight: 1.3
+            }}
+          >
             {title}
-          </p>
-          <div className="flex justify-center">
-            <div className="h-px w-12 bg-gold rounded-full" />
+          </h2>
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-secondary/20" />
+            <svg className="w-3 h-3" style={{ color: '#C65D1E' }} fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+            </svg>
+            <div className="h-px w-12 bg-gradient-to-l from-transparent to-secondary/20" />
           </div>
         </motion.div>
 
         {/* Countdown Units */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16">
           {units.map((unit, index) => (
             <CountdownUnit
               key={unit.label}
               value={unit.value}
-              label={unit.value === 1 ? unit.label : unit.plural}
+              label={unit.label}
               index={index}
+              isLast={index === units.length - 1}
             />
           ))}
         </div>
-
-        {/* Decorative divider */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center mt-10 gap-3"
-        >
-          <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-          <svg width="24" height="24" viewBox="0 0 24 24" className="text-gold">
-            <path
-              d="M12 2L15 9L22 9L16.5 14L19 21L12 16L5 21L7.5 14L2 9L9 9L12 2Z"
-              fill="currentColor"
-              opacity="0.6"
-            />
-          </svg>
-          <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-        </motion.div>
       </div>
     </section>
   )
 }
 
 // Individual Countdown Unit Component
-function CountdownUnit({ value, label, index }) {
-  const [prevValue, setPrevValue] = useState(value)
-  const [isFlipping, setIsFlipping] = useState(false)
-
-  useEffect(() => {
-    if (value !== prevValue) {
-      setIsFlipping(true)
-      setTimeout(() => {
-        setPrevValue(value)
-        setIsFlipping(false)
-      }, 300)
-    }
-  }, [value])
-
+function CountdownUnit({ value, label, index, isLast }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        ease: 'easeOut',
+        duration: 0.7, 
+        delay: index * 0.15,
+        ease: [0.25, 0.1, 0.25, 1]
       }}
-      className="group"
+      className="text-center"
     >
       <div className="relative">
-        {/* Card background */}
-        <div 
-          className="
-            relative bg-background border-2 border-border rounded-2xl
-            p-4 sm:p-6 md:p-8
-            transition-all duration-300
-            hover:border-gold hover:shadow-xl
-            group-hover:scale-105
-          "
-        >
-          {/* Inner decorative border */}
-          <div 
-            className="absolute inset-2 rounded-xl border border-gold/20 pointer-events-none"
-          />
-
-          {/* Top corner decoration */}
-          <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-gold/30" />
-          <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-blush/30" />
-
-          {/* Number */}
-          <div className="relative mb-2 sm:mb-3">
-            <motion.div
-              key={value}
-              initial={isFlipping ? { rotateX: -90, opacity: 0 } : false}
-              animate={{ rotateX: 0, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="text-center"
-            >
-              <span 
-                className="
-                  font-bold
-                  text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-                  bg-gradient-to-br from-gold via-gold to-gold/70
-                  bg-clip-text text-transparent
-                "
-                style={{
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 2px 10px rgba(198, 93, 30, 0.1)',
-                }}
-              >
-                {String(value).padStart(2, '0')}
-              </span>
-            </motion.div>
-
-            {/* Subtle glow behind number */}
-            <div 
-              className="absolute inset-0 blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-              style={{ backgroundColor: '#C65D1E' }}
-            />
-          </div>
-
-          {/* Label */}
-          <div className="text-center">
-            <p className="
-              text-xs sm:text-sm md:text-base
-              uppercase tracking-[0.2em] text-secondary
-              group-hover:text-gold transition-colors duration-300
-            ">
-              {label}
-            </p>
-          </div>
-
-          {/* Separator dots (except for last item on desktop) */}
-          {index < 3 && (
-            <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-              <div className="flex flex-col gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
-                <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Animated accent line */}
+        {/* Number */}
         <motion.div
-          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gold rounded-full"
-          initial={{ width: 0 }}
-          whileInView={{ width: '60%' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-        />
+          key={value}
+          initial={{ opacity: 0.7 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+          className="mb-2"
+        >
+          <span 
+            className="text-6xl md:text-7xl lg:text-8xl block"
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: 300,
+              color: '#C65D1E',
+              letterSpacing: '-0.02em'
+            }}
+          >
+            {String(value).padStart(2, '0')}
+          </span>
+        </motion.div>
+
+        {/* Label */}
+        <p 
+          className="text-sm md:text-base tracking-wider"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: '#5A4A3F',
+            fontWeight: 400,
+            textTransform: 'lowercase',
+            fontStyle: 'italic'
+          }}
+        >
+          {label.toLowerCase()}
+        </p>
+
+        {/* Separator */}
+        {!isLast && (
+          <div 
+            className="hidden md:block absolute top-1/2 -right-6 lg:-right-8 transform -translate-y-1/2"
+            style={{ color: '#C65D1E', opacity: 0.3 }}
+          >
+            <svg className="w-2 h-2" fill="currentColor" viewBox="0 0 8 8">
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </div>
+        )}
       </div>
     </motion.div>
   )
 }
-
-/**
- * ============================================================================
- * USAGE EXAMPLE
- * ============================================================================
- * 
- * import Countdown from './components/Countdown'
- * 
- * <Countdown 
- *   targetDate="2026-10-15T16:00:00"
- *   title="Counting Down To"
- * />
- * 
- * ============================================================================
- * FEATURES
- * ============================================================================
- * 
- * ✅ Live countdown with seconds precision
- * ✅ Flip animation on number change
- * ✅ Gradient gold numbers with glow effect
- * ✅ Responsive grid (2 cols mobile, 4 cols desktop)
- * ✅ Hover effects on cards
- * ✅ Premium decorative elements
- * ✅ Accessible and semantic HTML
- * ✅ Framer Motion animations
- * ✅ Automatic cleanup on unmount
- * 
- * ============================================================================
- */

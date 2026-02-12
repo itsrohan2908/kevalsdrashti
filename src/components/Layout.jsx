@@ -31,83 +31,12 @@ export default function Layout({ children }) {
       {/* Footer */}
       <footer
         role="contentinfo"
-        className="bg-surface border-t border-border mt-auto"
+        className="bg-gradient-to-b from-background to-surface/30 mt-auto"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center">
-                  <span className="font-heading font-bold text-background text-sm">
-                    S&amp;J
-                  </span>
-                </div>
-                <span className="font-heading text-lg font-semibold text-primary">
-                  Sarah &amp; James
-                </span>
-              </div>
-              <p className="text-sm text-secondary font-body">
-                Celebrating love and unity
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-heading text-primary font-semibold mb-4">
-                Quick Links
-              </h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="#events"
-                    className="text-sm text-secondary hover:text-gold transition-colors font-body"
-                  >
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#gallery"
-                    className="text-sm text-secondary hover:text-gold transition-colors font-body"
-                  >
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#contact"
-                    className="text-sm text-secondary hover:text-gold transition-colors font-body"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="font-heading text-primary font-semibold mb-4">
-                Get in Touch
-              </h3>
-              <p className="text-sm text-secondary font-body">
-                Questions? Reach out to us at<br />
-                <a
-                  href="mailto:hello@sarahandjames.com"
-                  className="text-gold hover:underline"
-                >
-                  hello@sarahandjames.com
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Copyright */}
-          <div className="mt-8 pt-8 border-t border-border text-center">
-            <p className="text-sm text-secondary font-body">
-              &copy; {new Date().getFullYear()} Sarah &amp; James. Made with love.
-            </p>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 py-8 text-center">
+          <p className="text-2xl text-secondary/60 italic tracking-wide" style={{ fontFamily: "'Dancing Script', 'Brush Script MT', cursive" }}>
+            Made with love
+          </p>
         </div>
       </footer>
     </div>
