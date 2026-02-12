@@ -28,8 +28,8 @@ function FloatingPetal({ delay, style }) {
       }}
     >
       <svg width="10" height="12" viewBox="0 0 10 12" fill="none">
-        <ellipse cx="5" cy="6" rx="4" ry="5.5" fill="#C9A85B" opacity="0.25" />
-        <ellipse cx="5" cy="6" rx="2.5" ry="3.5" fill="#C9A85B" opacity="0.15" />
+        <ellipse cx="5" cy="6" rx="4" ry="5.5" fill="#C65D1E" opacity="0.25" />
+        <ellipse cx="5" cy="6" rx="2.5" ry="3.5" fill="#C65D1E" opacity="0.15" />
       </svg>
     </motion.div>
   )
@@ -48,8 +48,8 @@ function OmSymbol() {
         className="font-serif select-none"
         style={{
           fontSize: '48px',
-          color: '#C9A85B',
-          textShadow: '0 0 20px rgba(201,168,91,0.3)',
+          color: '#C65D1E',
+          textShadow: '0 0 20px rgba(198,93,30,0.3)',
           letterSpacing: '0.05em',
         }}
       >
@@ -179,7 +179,7 @@ function GaneshaSVG({ onComplete }) {
 
   const pathStyle = {
     fill: 'none',
-    stroke: '#C9A85B',
+    stroke: '#C65D1E',
     strokeWidth: 1.8,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -187,7 +187,7 @@ function GaneshaSVG({ onComplete }) {
 
   const glowStyle = {
     fill: 'none',
-    stroke: '#C9A85B',
+    stroke: '#C65D1E',
     strokeWidth: 3.5,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -397,7 +397,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
             className="fixed inset-0 z-50"
-            style={{ backgroundColor: '#FBF6F0' }}
+            style={{ backgroundColor: '#F5E6D3' }}
             ref={overlayRef}
           >
             {/* Close button */}
@@ -408,10 +408,10 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
               transition={{ delay: 0.5 }}
               className="absolute top-5 right-5 z-50 w-10 h-10 flex items-center justify-center rounded-full transition-colors"
               style={{
-                backgroundColor: 'rgba(201,168,91,0.08)',
-                color: '#C9A85B',
+                backgroundColor: 'rgba(198,93,30,0.08)',
+                color: '#C65D1E',
               }}
-              whileHover={{ backgroundColor: 'rgba(201,168,91,0.15)', scale: 1.05 }}
+              whileHover={{ backgroundColor: 'rgba(198,93,30,0.15)', scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -433,13 +433,13 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
             <svg className="absolute top-0 left-0 w-24 h-24 pointer-events-none opacity-30" viewBox="0 0 100 100">
               <motion.line
                 x1="0" y1="20" x2="60" y2="20"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2, delay: 0.3 }}
               />
               <motion.line
                 x1="20" y1="0" x2="20" y2="60"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2, delay: 0.5 }}
               />
@@ -447,13 +447,13 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
             <svg className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none opacity-30" viewBox="0 0 100 100">
               <motion.line
                 x1="100" y1="80" x2="40" y2="80"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2, delay: 0.3 }}
               />
               <motion.line
                 x1="80" y1="100" x2="80" y2="40"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2, delay: 0.5 }}
               />
@@ -485,7 +485,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                       fontSize: '14px',
                       letterSpacing: '0.25em',
                       textTransform: 'uppercase',
-                      color: '#C9A85B',
+                      color: '#C65D1E',
                     }}
                   >
                     श्री गणेशाय नमः
@@ -528,7 +528,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                       >
                         <motion.line
                           x1="0" y1="1" x2="80" y2="1"
-                          stroke="#C9A85B"
+                          stroke="#C65D1E"
                           strokeWidth="0.5"
                           initial={{ pathLength: 0, opacity: 0 }}
                           animate={{ pathLength: 1, opacity: 0.6 }}
@@ -580,7 +580,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                           fontFamily: "'Cormorant Garamond', 'Georgia', serif",
                           fontSize: '18px',
                           fontWeight: 300,
-                          color: '#C9A85B',
+                          color: '#C65D1E',
                           letterSpacing: '0.08em',
                         }}
                       >
@@ -612,7 +612,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                       >
                         <motion.line
                           x1="0" y1="1" x2="40" y2="1"
-                          stroke="#C9A85B"
+                          stroke="#C65D1E"
                           strokeWidth="0.5"
                           initial={{ pathLength: 0, opacity: 0 }}
                           animate={{ pathLength: 1, opacity: 0.4 }}
@@ -679,13 +679,13 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                             {/* Subtle grid pattern */}
                             <defs>
                               <pattern id="ganesh-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8DFD6" strokeWidth="0.3" opacity="0.5" />
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8B89D" strokeWidth="0.3" opacity="0.5" />
                               </pattern>
                             </defs>
                             <rect width="320" height="200" fill="url(#ganesh-grid)" />
 
                             {/* Roads — soft, minimal */}
-                            <g stroke="#E2D9CE" strokeWidth="2.5" fill="none" opacity="0.6">
+                            <g stroke="#EDD4C1" strokeWidth="2.5" fill="none" opacity="0.6">
                               <path d="M0,100 Q80,95 160,100 T320,100" />
                               <path d="M160,0 Q155,50 160,100 T165,200" />
                               <path d="M0,60 L320,60" strokeWidth="1.5" />
@@ -695,7 +695,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                             </g>
 
                             {/* Greenery — small abstract trees */}
-                            <g fill="#C9A85B" opacity="0.12">
+                            <g fill="#C65D1E" opacity="0.12">
                               <circle cx="50" cy="40" r="10" />
                               <circle cx="280" cy="35" r="12" />
                               <circle cx="40" cy="160" r="9" />
@@ -705,7 +705,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                             </g>
 
                             {/* Subtle building blocks */}
-                            <g fill="#C9A85B" opacity="0.06">
+                            <g fill="#C65D1E" opacity="0.06">
                               <rect x="90" y="115" width="28" height="18" rx="2" />
                               <rect x="200" y="70" width="24" height="22" rx="2" />
                               <rect x="100" y="55" width="18" height="25" rx="2" />
@@ -715,11 +715,11 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                             {/* Center venue pin — pulsing glow */}
                             <g>
                               {/* Outer glow rings */}
-                              <circle cx="160" cy="100" r="22" fill="#C9A85B" opacity="0.06">
+                              <circle cx="160" cy="100" r="22" fill="#C65D1E" opacity="0.06">
                                 <animate attributeName="r" values="22;28;22" dur="3s" repeatCount="indefinite" />
                                 <animate attributeName="opacity" values="0.06;0.02;0.06" dur="3s" repeatCount="indefinite" />
                               </circle>
-                              <circle cx="160" cy="100" r="14" fill="#C9A85B" opacity="0.1">
+                              <circle cx="160" cy="100" r="14" fill="#C65D1E" opacity="0.1">
                                 <animate attributeName="r" values="14;18;14" dur="3s" repeatCount="indefinite" />
                                 <animate attributeName="opacity" values="0.1;0.05;0.1" dur="3s" repeatCount="indefinite" />
                               </circle>
@@ -728,7 +728,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                               <g transform="translate(160, 96)">
                                 <path
                                   d="M0 -6 C-2.5 -10, -7 -10, -8.5 -6.5 C-10 -3, -10 0.5, 0 7 C10 0.5, 10 -3, 8.5 -6.5 C7 -10, 2.5 -10, 0 -6 Z"
-                                  fill="#C9A85B"
+                                  fill="#C65D1E"
                                   stroke="#FAF5ED"
                                   strokeWidth="0.8"
                                 />
@@ -783,7 +783,7 @@ export default function GaneshOverlay({ event, isOpen, onClose }) {
                           fontSize: '13px',
                           letterSpacing: '0.15em',
                           textTransform: 'uppercase',
-                          color: '#C9A85B',
+                          color: '#C65D1E',
                         }}
                       >
                         <span>Directions</span>

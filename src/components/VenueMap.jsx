@@ -42,10 +42,10 @@ function MiniMap({ venue }) {
       aria-label={`Illustrated map showing ${venue.name}`}
     >
       {/* Background */}
-      <rect width="200" height="200" fill="#FBF6F0" />
+      <rect width="200" height="200" fill="#F5E6D3" />
       
       {/* Decorative map elements - roads */}
-      <g stroke="#E8DFD6" strokeWidth="3" fill="none">
+      <g stroke="#E8B89D" strokeWidth="3" fill="none">
         <path d="M0 100 L200 100" /> {/* Horizontal road */}
         <path d="M100 0 L100 200" /> {/* Vertical road */}
         <path d="M0 60 Q50 50, 100 60 T200 60" /> {/* Curved road */}
@@ -54,7 +54,7 @@ function MiniMap({ venue }) {
       </g>
       
       {/* Decorative elements - trees/landmarks */}
-      <g fill="#C9A85B" opacity="0.3">
+      <g fill="#C65D1E" opacity="0.3">
         <circle cx="30" cy="30" r="8" />
         <circle cx="170" cy="30" r="8" />
         <circle cx="30" cy="170" r="8" />
@@ -62,7 +62,7 @@ function MiniMap({ venue }) {
       </g>
       
       {/* Decorative blocks - buildings */}
-      <g fill="#F4D7D3" opacity="0.4">
+      <g fill="#C97A56" opacity="0.4">
         <rect x="50" y="110" width="30" height="20" rx="2" />
         <rect x="120" y="70" width="25" height="25" rx="2" />
         <rect x="65" y="150" width="20" height="30" rx="2" />
@@ -72,20 +72,20 @@ function MiniMap({ venue }) {
       {/* Center venue marker with pulsing animation */}
       <g className="animate-pulse-slow">
         {/* Outer glow */}
-        <circle cx="100" cy="100" r="20" fill="#C9A85B" opacity="0.2" />
-        <circle cx="100" cy="100" r="15" fill="#C9A85B" opacity="0.3" />
+        <circle cx="100" cy="100" r="20" fill="#C65D1E" opacity="0.2" />
+        <circle cx="100" cy="100" r="15" fill="#C65D1E" opacity="0.3" />
         
         {/* Heart pin */}
         <g transform="translate(100, 100)">
           {/* Heart shape */}
           <path
             d="M0 -8 C-3 -12, -8 -12, -10 -8 C-12 -4, -12 0, 0 8 C12 0, 12 -4, 10 -8 C8 -12, 3 -12, 0 -8 Z"
-            fill="#C9A85B"
-            stroke="#FBF6F0"
+            fill="#C65D1E"
+            stroke="#F5E6D3"
             strokeWidth="1"
           />
           {/* White dot in center */}
-          <circle cx="0" cy="-2" r="2" fill="#FBF6F0" />
+          <circle cx="0" cy="-2" r="2" fill="#F5E6D3" />
         </g>
       </g>
       
@@ -94,7 +94,7 @@ function MiniMap({ venue }) {
         x="100"
         y="140"
         textAnchor="middle"
-        fill="#222028"
+        fill="#3E2A24"
         fontSize="10"
         fontFamily="Inter, sans-serif"
         fontWeight="600"

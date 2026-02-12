@@ -11,16 +11,17 @@
 :root {
   /* === Colors === */
   
-  /* Primary Palette */
-  --color-background: #FBF6F0;     /* Cream - Main background */
-  --color-text-primary: #222028;    /* Near-black - Body text */
-  --color-accent-blush: #F4D7D3;    /* Soft pink - Accents, highlights */
-  --color-accent-gold: #C9A85B;     /* Muted gold - CTAs, links */
+  /* Primary Palette - Warm Indian-Inspired Theme */
+  --color-background: #F5E6D3;     /* Creamy Beige - Main background */
+  --color-text-primary: #3E2A24;    /* Deep Warm Brown - Body text */
+  --color-accent-blush: #C97A56;    /* Terracotta - Secondary accent */
+  --color-accent-gold: #C65D1E;     /* Burnt Orange - Primary accent, CTAs */
   
   /* Semantic Colors (derived from primary palette) */
-  --color-surface: #FFFFFF;         /* White - Cards, elevated surfaces */
-  --color-text-secondary: #6B6874;  /* Muted purple-grey - Secondary text */
-  --color-border: #E8DFD6;          /* Light taupe - Borders, dividers */
+  --color-surface: #EED9C4;         /* Soft Beige - Cards, elevated surfaces */
+  --color-text-secondary: #7A5B4F;  /* Medium Brown - Secondary text */
+  --color-border: #E8B89D;          /* Soft Highlight - Borders, dividers, glow */
+  --color-highlight: #E8B89D;       /* Soft Highlight/Glow - Special effects */
   
   /* === Typography === */
   

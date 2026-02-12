@@ -55,14 +55,14 @@ export default function Countdown({
         <div 
           className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full opacity-[0.03]"
           style={{ 
-            background: 'radial-gradient(circle, #C9A85B 0%, transparent 70%)',
+            background: 'radial-gradient(circle, #C65D1E 0%, transparent 70%)',
             transform: 'translate(-50%, -50%)',
           }}
         />
         <div 
           className="absolute top-1/2 right-1/4 w-64 h-64 rounded-full opacity-[0.03]"
           style={{ 
-            background: 'radial-gradient(circle, #F4D7D3 0%, transparent 70%)',
+            background: 'radial-gradient(circle, #C97A56 0%, transparent 70%)',
             transform: 'translate(50%, -50%)',
           }}
         />
@@ -77,7 +77,7 @@ export default function Countdown({
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <p className="font-body text-sm sm:text-base uppercase tracking-[0.3em] text-secondary mb-2">
+          <p className="text-sm sm:text-base uppercase tracking-[0.3em] text-secondary mb-2">
             {title}
           </p>
           <div className="flex justify-center">
@@ -178,7 +178,7 @@ function CountdownUnit({ value, label, index }) {
             >
               <span 
                 className="
-                  font-heading font-bold
+                  font-bold
                   text-4xl sm:text-5xl md:text-6xl lg:text-7xl
                   bg-gradient-to-br from-gold via-gold to-gold/70
                   bg-clip-text text-transparent
@@ -186,7 +186,7 @@ function CountdownUnit({ value, label, index }) {
                 style={{
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  textShadow: '0 2px 10px rgba(201, 168, 91, 0.1)',
+                  textShadow: '0 2px 10px rgba(198, 93, 30, 0.1)',
                 }}
               >
                 {String(value).padStart(2, '0')}
@@ -196,14 +196,14 @@ function CountdownUnit({ value, label, index }) {
             {/* Subtle glow behind number */}
             <div 
               className="absolute inset-0 blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-              style={{ backgroundColor: '#C9A85B' }}
+              style={{ backgroundColor: '#C65D1E' }}
             />
           </div>
 
           {/* Label */}
           <div className="text-center">
             <p className="
-              font-body text-xs sm:text-sm md:text-base
+              text-xs sm:text-sm md:text-base
               uppercase tracking-[0.2em] text-secondary
               group-hover:text-gold transition-colors duration-300
             ">

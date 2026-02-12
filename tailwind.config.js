@@ -8,45 +8,64 @@ export default {
     extend: {
       /* === Color System === */
       colors: {
-        // Primary palette - wedding theme
-        background: '#FBF6F0',      // Cream
-        primary: '#222028',          // Near-black text
-        blush: '#F4D7D3',           // Accent blush pink
-        gold: '#C9A85B',            // Accent gold
+        // Primary palette - Warm Indian-Inspired Wedding Theme
+        background: '#F5E6D3',      // Creamy Beige - Main background
+        primary: '#3E2A24',          // Deep Warm Brown - Text
+        blush: '#C97A56',           // Terracotta - Secondary accent
+        gold: '#C65D1E',            // Burnt Orange - Primary accent
         
         // Semantic colors
-        surface: '#FFFFFF',          // Cards, elevated surfaces
-        secondary: '#6B6874',        // Secondary text
-        border: '#E8DFD6',          // Borders, dividers
+        surface: '#EED9C4',          // Soft Beige - Cards, elevated surfaces
+        secondary: '#7A5B4F',        // Medium Brown - Secondary text
+        border: '#E8B89D',          // Soft Highlight - Borders, dividers
+        highlight: '#E8B89D',       // Soft Highlight/Glow - Special effects
         
         // Legacy mappings (for backwards compatibility)
-        accent: '#F4D7D3',
-        foreground: '#222028',
-        muted: '#6B6874',
+        accent: '#C97A56',
+        foreground: '#3E2A24',
+        muted: '#7A5B4F',
       },
       
       /* === Typography === */
       fontFamily: {
-        // Heading font: Playfair Display (serif, elegant)
-        // Usage: className="font-heading"
-        heading: ['Playfair Display', 'Georgia', 'serif'],
+        // Heading font: Pacifico (romantic, minimal)
+        // Usage: className="font-heading" or style={{ fontFamily: 'Pacifico, cursive' }}
+        heading: ['Pacifico', 'cursive'],
         
-        // Body font: Inter (sans-serif, readable)
+        // Body font: Inter (clean, modern sans-serif)
         // Usage: className="font-body"
         body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         
         // Default sans (alias to body)
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         
-        // Default serif (alias to heading)
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        // Serif: Cormorant Garamond (elegant serif for quotes/accents)
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
       },
       
       /* === Spacing === */
       spacing: {
-        '18': '4.5rem',   // 72px
-        '88': '22rem',    // 352px
-        '128': '32rem',   // 512px
+        '18': '4.5rem',   // 72px - Premium breathing room
+        '22': '5.5rem',   // 88px - Extra spacing
+        '30': '7.5rem',   // 120px - Hero sections
+        '88': '22rem',    // 352px - Large layouts
+        '128': '32rem',   // 512px - Max widths
+      },
+      
+      /* === Border Radius - Soft, Minimal Corners === */
+      borderRadius: {
+        'sm': '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+      },
+      
+      /* === Border Radius - Soft, Minimal Corners === */
+      borderRadius: {
+        'sm': '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
       },
       
       /* === Animations === */

@@ -31,7 +31,7 @@ function IncenseSmoke({ delay, x }) {
       <svg width="16" height="30" viewBox="0 0 16 30" fill="none">
         <path
           d="M8 30 Q4 22 8 16 Q12 10 8 4 Q6 0 8 0"
-          stroke="#C9A85B"
+          stroke="#C65D1E"
           strokeWidth="0.8"
           fill="none"
           opacity="0.3"
@@ -49,8 +49,8 @@ function GlowParticle({ delay, style }) {
       style={{
         width: '3px',
         height: '3px',
-        backgroundColor: '#C9A85B',
-        boxShadow: '0 0 6px rgba(201,168,91,0.4)',
+        backgroundColor: '#C65D1E',
+        boxShadow: '0 0 6px rgba(198,93,30,0.4)',
         ...style,
       }}
       initial={{ opacity: 0, y: 0 }}
@@ -78,7 +78,7 @@ function RippleWave({ delay }) {
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        border: '1px solid #C9A85B',
+        border: '1px solid #C65D1E',
       }}
       initial={{ width: 0, height: 0, opacity: 0.3 }}
       animate={{
@@ -108,8 +108,8 @@ function SwastikSymbol() {
     >
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         {/* Swastik — minimal line art */}
-        <g stroke="#C9A85B" strokeWidth="1.2" strokeLinecap="round" fill="none"
-          style={{ filter: 'drop-shadow(0 0 8px rgba(201,168,91,0.25))' }}
+        <g stroke="#C65D1E" strokeWidth="1.2" strokeLinecap="round" fill="none"
+          style={{ filter: 'drop-shadow(0 0 8px rgba(198,93,30,0.25))' }}
         >
           {/* Center cross */}
           <line x1="18" y1="6" x2="18" y2="30" />
@@ -120,10 +120,10 @@ function SwastikSymbol() {
           <line x1="18" y1="30" x2="10" y2="30" />
           <line x1="6" y1="18" x2="6" y2="26" />
           {/* Corner dots */}
-          <circle cx="10" cy="10" r="0.8" fill="#C9A85B" />
-          <circle cx="26" cy="10" r="0.8" fill="#C9A85B" />
-          <circle cx="10" cy="26" r="0.8" fill="#C9A85B" />
-          <circle cx="26" cy="26" r="0.8" fill="#C9A85B" />
+          <circle cx="10" cy="10" r="0.8" fill="#C65D1E" />
+          <circle cx="26" cy="10" r="0.8" fill="#C65D1E" />
+          <circle cx="10" cy="26" r="0.8" fill="#C65D1E" />
+          <circle cx="26" cy="26" r="0.8" fill="#C65D1E" />
         </g>
       </svg>
     </motion.div>
@@ -247,7 +247,7 @@ function KalashSVG({ onComplete }) {
 
   const pathStyle = {
     fill: 'none',
-    stroke: '#C9A85B',
+    stroke: '#C65D1E',
     strokeWidth: 1.6,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -255,7 +255,7 @@ function KalashSVG({ onComplete }) {
 
   const glowStyle = {
     fill: 'none',
-    stroke: '#C9A85B',
+    stroke: '#C65D1E',
     strokeWidth: 3,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -465,7 +465,7 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7 }}
             className="fixed inset-0 z-50"
-            style={{ backgroundColor: '#FBF6F0' }}
+            style={{ backgroundColor: '#F5E6D3' }}
           >
             {/* Close */}
             <motion.button
@@ -474,8 +474,8 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
               className="absolute top-5 right-5 z-50 w-10 h-10 flex items-center justify-center rounded-full transition-colors"
-              style={{ backgroundColor: 'rgba(201,168,91,0.08)', color: '#C9A85B' }}
-              whileHover={{ backgroundColor: 'rgba(201,168,91,0.15)', scale: 1.05 }}
+              style={{ backgroundColor: 'rgba(198,93,30,0.08)', color: '#C65D1E' }}
+              whileHover={{ backgroundColor: 'rgba(198,93,30,0.15)', scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -513,13 +513,13 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
             <svg className="absolute top-0 left-0 w-28 h-28 pointer-events-none opacity-20" viewBox="0 0 100 100">
               <motion.line
                 x1="0" y1="18" x2="55" y2="18"
-                stroke="#C76B7E" strokeWidth="0.5"
+                stroke="#C97A56" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2.2, delay: 0.3 }}
               />
               <motion.line
                 x1="18" y1="0" x2="18" y2="55"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2.2, delay: 0.5 }}
               />
@@ -527,13 +527,13 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
             <svg className="absolute bottom-0 right-0 w-28 h-28 pointer-events-none opacity-20" viewBox="0 0 100 100">
               <motion.line
                 x1="100" y1="82" x2="45" y2="82"
-                stroke="#C9A85B" strokeWidth="0.5"
+                stroke="#C65D1E" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2.2, delay: 0.3 }}
               />
               <motion.line
                 x1="82" y1="100" x2="82" y2="45"
-                stroke="#C76B7E" strokeWidth="0.5"
+                stroke="#C97A56" strokeWidth="0.5"
                 initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
                 transition={{ duration: 2.2, delay: 0.5 }}
               />
@@ -565,7 +565,7 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
                       fontSize: '13px',
                       letterSpacing: '0.3em',
                       textTransform: 'uppercase',
-                      color: '#C9A85B',
+                      color: '#C65D1E',
                     }}
                   >
                     शुभ गृह शांति
@@ -621,7 +621,7 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
                       <motion.svg width="80" height="2" viewBox="0 0 80 2" className="mb-10">
                         <motion.line
                           x1="0" y1="1" x2="80" y2="1"
-                          stroke="#C9A85B" strokeWidth="0.5"
+                          stroke="#C65D1E" strokeWidth="0.5"
                           initial={{ pathLength: 0, opacity: 0 }}
                           animate={{ pathLength: 1, opacity: 0.6 }}
                           transition={{ duration: 1.2, delay: 0.2, ease: 'easeInOut' }}
@@ -764,13 +764,13 @@ export default function GrahShantiOverlay({ event, isOpen, onClose }) {
                           >
                             <defs>
                               <pattern id="grahshanti-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8DFD6" strokeWidth="0.3" opacity="0.5" />
+                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8B89D" strokeWidth="0.3" opacity="0.5" />
                               </pattern>
                             </defs>
                             <rect width="320" height="200" fill="url(#grahshanti-grid)" />
 
                             {/* Roads */}
-                            <g stroke="#E2D9CE" strokeWidth="2.5" fill="none" opacity="0.6">
+                            <g stroke="#EDD4C1" strokeWidth="2.5" fill="none" opacity="0.6">
                               <path d="M0,100 Q80,95 160,100 T320,100" />
                               <path d="M160,0 Q155,50 160,100 T165,200" />
                               <path d="M0,60 L320,60" strokeWidth="1.5" />

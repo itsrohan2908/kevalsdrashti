@@ -12,41 +12,41 @@ import LaganOverlay from './LaganOverlay'
  * Events Component - Premium Minimal Design
  */
 
-// Event themes - subtle, elegant colors per event
+// Event themes - warm, terracotta-inspired colors per event
 const eventThemes = {
   'ganesh': {
-    accent: '#C9956B',
-    light: '#FDF8F4',
+    accent: '#C65D1E',    // Burnt Orange
+    light: '#F5E6D3',
   },
   'Grah Shanti': {
-    accent: '#C76B7E',
-    light: '#FDF4F6',
+    accent: '#D4774A',    // Warm Terracotta variation
+    light: '#F5E6D3',
   },
   'Mameru': {
-    accent: '#8B7BC9',
-    light: '#F8F6FD',
+    accent: '#B85A30',    // Deep Burnt Orange
+    light: '#EED9C4',
   },
   'Haldi': {
-    accent: '#C9A85B',
-    light: '#FDFAEF',
+    accent: '#E89A6F',    // Light Terracotta
+    light: '#F5E6D3',
   },
   'Jamnavar': {
-    accent: '#C97B9E',
-    light: '#FDF4F8',
+    accent: '#C97A56',    // Terracotta
+    light: '#EED9C4',
   },
   'Rasgarba': {
-    accent: '#6BAE9C',
-    light: '#F4FBFA',
+    accent: '#D67347',    // Medium Burnt Orange
+    light: '#F5E6D3',
   },
   'Lagan': {
-    accent: '#6BAE9C',
-    light: '#F4FBFA',
+    accent: '#C65D1E',    // Burnt Orange
+    light: '#EED9C4',
   },
 }
 
 const defaultTheme = {
-  accent: '#C9A85B',
-  light: '#FDF6E9',
+  accent: '#C65D1E',    // Burnt Orange
+  light: '#F5E6D3',
 }
 
 // Default events data organized by day
@@ -55,8 +55,8 @@ const defaultEvents = [
     id: 1,
     name: 'ganesh',
     date: '2026-10-14',
-    startTime: '18:00',
-    endTime: '21:00',
+    startTime: '09:00',
+    endTime: '10:00',
     venue: 'Vineyard Terrace Restaurant',
     address: '456 Wine Country Road, Napa Valley, CA 94558',
     dressCode: 'smart-casual',
@@ -65,9 +65,9 @@ const defaultEvents = [
   {
     id: 2,
     name: 'Grah Shanti',
-    date: '2026-10-15',
-    startTime: '15:00',
-    endTime: '16:00',
+    date: '2026-10-14',
+    startTime: '10:30',
+    endTime: '12:00',
     venue: 'The Grand Estate Chapel',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -76,9 +76,9 @@ const defaultEvents = [
   {
     id: 3,
     name: 'Mameru',
-    date: '2026-10-15',
-    startTime: '16:30',
-    endTime: '17:30',
+    date: '2026-10-14',
+    startTime: '14:00',
+    endTime: '15:30',
     venue: 'Terrace Garden',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -87,9 +87,9 @@ const defaultEvents = [
   {
     id: 4,
     name: 'Haldi',
-    date: '2026-10-15',
-    startTime: '18:00',
-    endTime: '20:00',
+    date: '2026-10-14',
+    startTime: '16:00',
+    endTime: '17:30',
     venue: 'Grand Ballroom',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -98,9 +98,9 @@ const defaultEvents = [
   {
     id: 5,
     name: 'Jamnavar',
-    date: '2026-10-15',
-    startTime: '20:00',
-    endTime: '23:30',
+    date: '2026-10-14',
+    startTime: '18:00',
+    endTime: '19:30',
     venue: 'Grand Ballroom',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'formal',
@@ -109,9 +109,9 @@ const defaultEvents = [
   {
     id: 6,
     name: 'Rasgarba',
-    date: '2026-10-16',
-    startTime: '10:00',
-    endTime: '12:30',
+    date: '2026-10-14',
+    startTime: '20:00',
+    endTime: '23:30',
     venue: 'Garden Pavilion',
     address: '123 Vineyard Lane, Napa Valley, CA 94558',
     dressCode: 'casual',
@@ -120,7 +120,7 @@ const defaultEvents = [
   {
     id: 7,
     name: 'Lagan',
-    date: '2026-10-16',
+    date: '2026-10-15',
     startTime: '10:00',
     endTime: '12:30',
     venue: 'Garden Pavilion',
@@ -275,7 +275,7 @@ function EventOverlay({ event, isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.12 }}
             onClick={onClose}
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
           />
@@ -286,7 +286,7 @@ function EventOverlay({ event, isOpen, onClose }) {
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ type: 'spring', damping: 28, stiffness: 380 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 700, mass: 0.8 }}
               className="relative w-full max-w-md pointer-events-auto bg-white rounded-2xl shadow-xl overflow-hidden"
             >
               {/* Close button */}
@@ -305,13 +305,13 @@ function EventOverlay({ event, isOpen, onClose }) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.1 }}
+                  transition={{ delay: 0.04, duration: 0.12 }}
                   className="mb-5"
                 >
-                  <h3 className="font-heading text-2xl font-semibold text-primary mb-1">
+                  <h3 className="text-2xl font-normal text-primary mb-1" style={{ fontFamily: 'Pacifico, cursive' }}>
                     {event.name}
                   </h3>
-                  <p className="font-body text-sm text-secondary">
+                  <p className="text-sm text-secondary">
                     {formatDate(event.date)}
                   </p>
                 </motion.div>
@@ -320,8 +320,8 @@ function EventOverlay({ event, isOpen, onClose }) {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.15 }}
-                  className="font-body text-secondary/90 text-[15px] leading-relaxed mb-6"
+                  transition={{ delay: 0.06, duration: 0.12 }}
+                  className="text-secondary/90 text-[15px] leading-relaxed mb-6"
                 >
                   {event.description}
                 </motion.p>
@@ -330,7 +330,7 @@ function EventOverlay({ event, isOpen, onClose }) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ delay: 0.08, duration: 0.12 }}
                   className="rounded-xl p-4 mb-5"
                   style={{ backgroundColor: theme.light }}
                 >
@@ -344,7 +344,7 @@ function EventOverlay({ event, isOpen, onClose }) {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-heading text-base font-medium text-primary">
+                      <p className="text-base font-medium text-primary">
                         {formatTime(event.startTime)} — {formatTime(event.endTime)}
                       </p>
                     </div>
@@ -361,8 +361,8 @@ function EventOverlay({ event, isOpen, onClose }) {
                       </svg>
                     </div>
                     <div className="min-w-0 -mt-0.5">
-                      <p className="font-heading text-base font-medium text-primary">{event.venue}</p>
-                      <p className="font-body text-sm text-secondary/70">{event.address}</p>
+                      <p className="text-base font-medium text-primary">{event.venue}</p>
+                      <p className="text-sm text-secondary/70">{event.address}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -374,7 +374,7 @@ function EventOverlay({ event, isOpen, onClose }) {
                   rel="noopener noreferrer"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.25 }}
+                  transition={{ delay: 0.1, duration: 0.12 }}
                   className="flex items-center justify-between p-3 rounded-xl border border-border/60 hover:border-border hover:bg-surface/50 transition-all mb-5 group"
                 >
                   <div className="flex items-center gap-3">
@@ -383,7 +383,7 @@ function EventOverlay({ event, isOpen, onClose }) {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
                       </svg>
                     </div>
-                    <span className="font-body text-sm text-primary">View on Google Maps</span>
+                    <span className="text-sm text-primary">View on Google Maps</span>
                   </div>
                   <svg className="w-4 h-4 text-secondary/40 group-hover:text-secondary transition-colors group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
@@ -394,10 +394,10 @@ function EventOverlay({ event, isOpen, onClose }) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.12, duration: 0.12 }}
                   className="flex items-center justify-center gap-2 py-3 border-t border-border/40"
                 >
-                  <span className="font-body text-sm text-secondary">
+                  <span className="text-sm text-secondary">
                     Attire: <span className="font-medium text-primary capitalize">{event.dressCode}</span>
                   </span>
                 </motion.div>
@@ -420,24 +420,24 @@ function EventCard({ event, onClick }) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.16 }}
       onClick={onClick}
-      className="group bg-white border border-border/60 rounded-xl p-5 hover:shadow-lg hover:border-border transition-all duration-200 cursor-pointer relative"
+      className="group bg-white border border-border/60 rounded-xl p-5 soft-shadow hover:shadow-lg hover:border-gold/30 transition-all duration-200 cursor-pointer relative"
     >
       {/* Subtle click indicator for Ganesh event */}
-      {event.name.toLowerCase() === 'ganesh' && (
+        {event.name.toLowerCase() === 'ganesh' && (
         <motion.div
           className="absolute top-3 right-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.35 }}
           whileHover={{ opacity: 0.6 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.12 }}
         >
           <span
             className="text-[10px] tracking-widest uppercase group-hover:opacity-80 transition-opacity"
             style={{
               fontFamily: "'Cormorant Garamond', 'Georgia', serif",
-              color: '#C9A85B',
+              color: '#C65D1E',
               letterSpacing: '0.12em',
             }}
           >
@@ -452,20 +452,20 @@ function EventCard({ event, onClick }) {
           className="w-14 h-14 rounded-xl flex flex-col items-center justify-center flex-shrink-0"
           style={{ backgroundColor: theme.light }}
         >
-          <span className="font-heading text-lg font-semibold" style={{ color: theme.accent }}>
+          <span className="text-lg font-medium" style={{ color: theme.accent }}>
             {formatTime(event.startTime).split(':')[0]}
           </span>
-          <span className="font-body text-[10px] uppercase tracking-wide text-secondary/60">
+          <span className="text-[10px] uppercase tracking-wide text-secondary/60">
             {formatTime(event.startTime).split(' ')[1]}
           </span>
         </div>
 
         {/* Event info */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-heading text-lg font-semibold text-primary group-hover:text-gold transition-colors truncate">
+          <h3 className="text-lg font-normal text-primary group-hover:text-gold transition-colors truncate" style={{ fontFamily: 'Pacifico, cursive' }}>
             {event.name}
           </h3>
-          <p className="font-body text-sm text-secondary/70 truncate">
+          <p className="text-sm text-secondary/70 truncate">
             {event.venue}
           </p>
         </div>
@@ -603,16 +603,17 @@ export default function Events({ events = defaultEvents, title = 'Event Schedule
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.24 }}
           className="text-center mb-12"
         >
           <h2
             id="events-heading"
-            className="font-heading text-3xl md:text-4xl font-semibold text-primary mb-3"
+            className="text-3xl md:text-4xl font-normal text-primary mb-3"
+            style={{ fontFamily: 'Pacifico, cursive' }}
           >
             {title}
           </h2>
-          <p className="font-body text-secondary/80">
+          <p className="text-secondary/80">
             A weekend of celebration and love
           </p>
         </motion.div>
@@ -631,14 +632,14 @@ export default function Events({ events = defaultEvents, title = 'Event Schedule
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: dayIndex * 0.05 }}
+                transition={{ duration: 0.18, delay: dayIndex * 0.02 }}
               >
                 {/* Day Header - Minimal */}
                 <div className="flex items-center gap-3 mb-4 px-1">
-                  <span className="font-heading text-lg font-semibold text-primary">
+                  <span className="text-lg font-normal text-primary" style={{ fontFamily: 'Pacifico, cursive' }}>
                     {dayName}
                   </span>
-                  <span className="font-body text-sm text-secondary/60">
+                  <span className="text-sm text-secondary/60">
                     {monthDay}
                   </span>
                 </div>

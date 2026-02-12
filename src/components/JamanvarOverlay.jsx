@@ -18,13 +18,13 @@ import gsap from 'gsap'
  *   8.  Everything fades to watermark → event details appear
  */
 
-// ── Feast palette ────────────────────────────────────────────────────
-const GOLD    = '#C9A85B'
-const WARM    = '#C9963B'
-const CREAM   = '#FBF6F0'
-const COPPER  = '#B8886E'
-const SAFFRON = '#D4A843'
-const RICH    = '#8B6914'
+// ── Feast palette - Warm Indian Tones ────────────────────────────────────────────────
+const GOLD    = '#C65D1E'   // Burnt Orange
+const WARM    = '#D67347'   // Warm Burnt Orange
+const CREAM   = '#F5E6D3'   // Creamy Beige
+const COPPER  = '#E8B89D'   // Soft Highlight
+const SAFFRON = '#E89A6F'   // Light Terracotta
+const RICH    = '#8B3426'   // Deep Burnt Orange
 
 // ── Steam Wisp ───────────────────────────────────────────────────────
 function SteamWisp({ delay, style }) {
@@ -745,13 +745,13 @@ export default function JamanvarOverlay({ event, isOpen, onClose }) {
                             >
                               <defs>
                                 <pattern id="jamanvar-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8DFD6" strokeWidth="0.3" opacity="0.5" />
+                                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8B89D" strokeWidth="0.3" opacity="0.5" />
                                 </pattern>
                               </defs>
                               <rect width="320" height="200" fill="url(#jamanvar-grid)" />
 
                               {/* Roads */}
-                              <g stroke="#E2D9CE" strokeWidth="2.5" fill="none" opacity="0.6">
+                              <g stroke="#EDD4C1" strokeWidth="2.5" fill="none" opacity="0.6">
                                 <path d="M0,100 Q80,95 160,100 T320,100" />
                                 <path d="M160,0 Q155,50 160,100 T165,200" />
                                 <path d="M0,60 L320,60" strokeWidth="1.5" />

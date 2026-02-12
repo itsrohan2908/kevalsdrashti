@@ -32,8 +32,8 @@ function SparkleParticle({ delay, style }) {
       transition={{ duration: 7, delay, repeat: Infinity, ease: 'easeInOut' }}
     >
       <svg width="5" height="5" viewBox="0 0 5 5">
-        <circle cx="2.5" cy="2.5" r="2" fill="#C9A85B" opacity="0.45" />
-        <circle cx="2.5" cy="2.5" r="0.8" fill="#C9A85B" opacity="0.7" />
+        <circle cx="2.5" cy="2.5" r="2" fill="#C65D1E" opacity="0.45" />
+        <circle cx="2.5" cy="2.5" r="0.8" fill="#C65D1E" opacity="0.7" />
       </svg>
     </motion.div>
   )
@@ -59,7 +59,7 @@ function BlessingParticle({ delay, x }) {
       }}
     >
       <svg width="4" height="4" viewBox="0 0 4 4">
-        <circle cx="2" cy="2" r="1.4" fill="#C9A85B" opacity="0.5" />
+        <circle cx="2" cy="2" r="1.4" fill="#C65D1E" opacity="0.5" />
       </svg>
     </motion.div>
   )
@@ -81,8 +81,8 @@ function FloatingPetal({ delay, style }) {
       transition={{ duration: 10, delay: delay + 2.0, repeat: Infinity, ease: 'easeInOut' }}
     >
       <svg width="9" height="11" viewBox="0 0 9 11" fill="none">
-        <ellipse cx="4.5" cy="5.5" rx="3.2" ry="4.5" fill="#F4D7D3" opacity="0.45" />
-        <ellipse cx="4.5" cy="5.5" rx="1.8" ry="2.8" fill="#F4D7D3" opacity="0.25" />
+        <ellipse cx="4.5" cy="5.5" rx="3.2" ry="4.5" fill="#C97A56" opacity="0.45" />
+        <ellipse cx="4.5" cy="5.5" rx="1.8" ry="2.8" fill="#C97A56" opacity="0.25" />
       </svg>
     </motion.div>
   )
@@ -102,15 +102,15 @@ function FloralMandala() {
       transition={{ duration: 5.5, delay: 3.2, ease: 'easeInOut' }}
     >
       <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
-        <circle cx="150" cy="150" r="130" stroke="#C9A85B" strokeWidth="0.4" opacity="0.35" />
-        <circle cx="150" cy="150" r="108" stroke="#C9A85B" strokeWidth="0.3" opacity="0.25" />
-        <circle cx="150" cy="150" r="85" stroke="#C9A85B" strokeWidth="0.25" opacity="0.2" />
+        <circle cx="150" cy="150" r="130" stroke="#C65D1E" strokeWidth="0.4" opacity="0.35" />
+        <circle cx="150" cy="150" r="108" stroke="#C65D1E" strokeWidth="0.3" opacity="0.25" />
+        <circle cx="150" cy="150" r="85" stroke="#C65D1E" strokeWidth="0.25" opacity="0.2" />
         {[...Array(12)].map((_, i) => (
           <ellipse
             key={i}
             cx="150" cy="42"
             rx="10" ry="26"
-            stroke="#C9A85B" strokeWidth="0.35" opacity="0.2"
+            stroke="#C65D1E" strokeWidth="0.35" opacity="0.2"
             fill="none"
             transform={`rotate(${i * 30} 150 150)`}
           />
@@ -120,7 +120,7 @@ function FloralMandala() {
             key={`inner-${i}`}
             cx="150" cy="80"
             rx="7" ry="18"
-            stroke="#F4D7D3" strokeWidth="0.3" opacity="0.2"
+            stroke="#C97A56" strokeWidth="0.3" opacity="0.2"
             fill="none"
             transform={`rotate(${i * 45} 150 150)`}
           />
@@ -130,7 +130,7 @@ function FloralMandala() {
           d="M150 180 C138 168, 120 160, 120 146 C120 133, 130 126, 140 126
              C146 126, 150 131, 150 136 C150 131, 154 126, 160 126
              C170 126, 180 133, 180 146 C180 160, 162 168, 150 180 Z"
-          stroke="#C9A85B" strokeWidth="0.4" fill="#C9A85B" opacity="0.07"
+          stroke="#C65D1E" strokeWidth="0.4" fill="#C65D1E" opacity="0.07"
         />
       </svg>
     </motion.div>
@@ -221,7 +221,7 @@ function ThaliSVG({ onComplete }) {
 
   const ps = {
     fill: 'none',
-    stroke: '#C9A85B',
+    stroke: '#C65D1E',
     strokeWidth: 1.4,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -462,8 +462,8 @@ export default function MameruOverlay({ event, isOpen, onClose }) {
   if (!event) return null
 
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.venue + ', ' + event.address)}`
-  const gold  = '#C9A85B'
-  const blush = '#F4D7D3'
+  const gold  = '#C65D1E'   // Burnt Orange
+  const blush = '#C97A56'   // Terracotta
 
   return (
     <AnimatePresence mode="wait">
@@ -490,7 +490,7 @@ export default function MameruOverlay({ event, isOpen, onClose }) {
           >
             <div
               className="relative w-full h-full overflow-hidden"
-              style={{ backgroundColor: '#FBF6F0' }}
+              style={{ backgroundColor: '#F5E6D3' }}
               ref={overlayRef}
             >
               {/* Close button */}
@@ -757,13 +757,13 @@ export default function MameruOverlay({ event, isOpen, onClose }) {
                             >
                               <defs>
                                 <pattern id="mameru-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8DFD6" strokeWidth="0.3" opacity="0.5" />
+                                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8B89D" strokeWidth="0.3" opacity="0.5" />
                                 </pattern>
                               </defs>
                               <rect width="320" height="200" fill="url(#mameru-grid)" />
 
                               {/* Roads */}
-                              <g stroke="#E2D9CE" strokeWidth="2.5" fill="none" opacity="0.6">
+                              <g stroke="#EDD4C1" strokeWidth="2.5" fill="none" opacity="0.6">
                                 <path d="M0,100 Q80,95 160,100 T320,100" />
                                 <path d="M160,0 Q155,50 160,100 T165,200" />
                                 <path d="M0,60 L320,60" strokeWidth="1.5" />

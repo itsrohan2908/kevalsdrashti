@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Layout from './components/Layout'
 import Hero from './components/Hero'
+import Greetings from './components/Greetings'
 import Countdown from './components/Countdown'
 import Events from './components/Events'
 import Gallery from './components/Gallery'
@@ -8,8 +9,8 @@ import Gallery from './components/Gallery'
 // Hero content configuration
 const heroContent = {
   names: 'Keval & Drashti',
-  subtitle: "We're getting married!",
-  date: 'October 15, 2026',
+  subtitle: "WE ARE GETTING MARRIED",
+  date: '9 May 2026',
   location: 'The Grand Estate, Napa Valley',
   initials: 'K&D',
   cta: {
@@ -34,6 +35,9 @@ function App() {
     <Layout>
       {/* Hero Section */}
       <Hero content={heroContent} />
+
+      {/* Greetings Section */}
+      <Greetings />
 
       <section id="events" className="bg-background">
         <Events title="Event Schedule" />
