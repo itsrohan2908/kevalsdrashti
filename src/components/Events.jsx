@@ -44,7 +44,7 @@ const defaultEvents = [
   {
     id: 2,
     name: 'Grah Shanti',
-    date: '2026-10-15',
+    date: '2026-10-14',
     startTime: '15:00',
     endTime: '16:00',
     venue: 'The Grand Estate Chapel',
@@ -55,7 +55,7 @@ const defaultEvents = [
   {
     id: 3,
     name: 'Mameru',
-    date: '2026-10-15',
+    date: '2026-10-14',
     startTime: '16:30',
     endTime: '17:30',
     venue: 'Terrace Garden',
@@ -66,7 +66,7 @@ const defaultEvents = [
   {
     id: 4,
     name: 'Haldi',
-    date: '2026-10-15',
+    date: '2026-10-14',
     startTime: '18:00',
     endTime: '20:00',
     venue: 'Grand Ballroom',
@@ -77,7 +77,7 @@ const defaultEvents = [
   {
     id: 5,
     name: 'Jamnavar',
-    date: '2026-10-15',
+    date: '2026-10-14',
     startTime: '20:00',
     endTime: '23:30',
     venue: 'Grand Ballroom',
@@ -88,7 +88,7 @@ const defaultEvents = [
   {
     id: 6,
     name: 'Rasgarba',
-    date: '2026-10-16',
+    date: '2026-10-14',
     startTime: '10:00',
     endTime: '12:30',
     venue: 'Garden Pavilion',
@@ -99,7 +99,7 @@ const defaultEvents = [
   {
     id: 7,
     name: 'Lagan',
-    date: '2026-10-16',
+    date: '2026-10-15',
     startTime: '10:00',
     endTime: '12:30',
     venue: 'Garden Pavilion',
@@ -262,6 +262,202 @@ function HeartConfetti() {
   )
 }
 
+// Illustrated Map Component - Minimal & Aesthetic
+function IllustratedMap({ venue, address }) {
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+      className="mb-12"
+    >
+      <motion.a
+        href={googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group cursor-pointer"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="relative bg-cream/30 backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/20 hover:shadow-lg transition-all duration-500 overflow-hidden">
+          {/* Floating petals animation */}
+          <motion.div
+            animate={{ 
+              y: [0, -8, 0],
+              rotate: [0, 5, 0]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute top-6 right-8 opacity-30"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2C8 2 7 4 7 6C7 4 5 2 3 2C5 2 7 4 7 6C7 8 5 10 3 10C5 10 7 12 7 14C7 12 9 10 11 10C9 10 7 8 7 6Z" fill="#F4C5B8" />
+            </svg>
+          </motion.div>
+
+          <motion.div
+            animate={{ 
+              y: [0, -10, 0],
+              rotate: [0, -5, 0]
+            }}
+            transition={{ 
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+            className="absolute bottom-8 left-8 opacity-30"
+          >
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2C8 2 7 4 7 6C7 4 5 2 3 2C5 2 7 4 7 6C7 8 5 10 3 10C5 10 7 12 7 14C7 12 9 10 11 10C9 10 7 8 7 6Z" fill="#C65D1E" opacity="0.4" />
+            </svg>
+          </motion.div>
+
+          <svg 
+            viewBox="0 0 400 200" 
+            className="w-full h-auto"
+            style={{ maxHeight: '160px' }}
+          >
+            {/* Soft background elements */}
+            <circle cx="60" cy="60" r="40" fill="#F5E6D3" opacity="0.3" />
+            <circle cx="340" cy="140" r="50" fill="#F4C5B8" opacity="0.2" />
+            
+            {/* Curved road path */}
+            <path
+              d="M 30 160 Q 100 140, 200 130 T 370 140"
+              stroke="#D4C4B0"
+              strokeWidth="16"
+              fill="none"
+              strokeLinecap="round"
+            />
+            
+            {/* Dashed center line */}
+            <path
+              d="M 30 160 Q 100 140, 200 130 T 370 140"
+              stroke="#E8DCC8"
+              strokeWidth="2"
+              fill="none"
+              strokeDasharray="8 12"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+
+            {/* Tree - Left */}
+            <g transform="translate(80, 100)">
+              <rect x="-3" y="10" width="6" height="20" rx="2" fill="#8B7355" />
+              <ellipse cx="0" cy="5" rx="18" ry="22" fill="#A8967C" opacity="0.7" />
+              <ellipse cx="-8" cy="8" rx="14" ry="18" fill="#9A8870" opacity="0.6" />
+              <ellipse cx="8" cy="10" rx="12" ry="16" fill="#B0A090" opacity="0.5" />
+            </g>
+
+            {/* Tree - Right */}
+            <g transform="translate(320, 90)">
+              <rect x="-3" y="15" width="6" height="18" rx="2" fill="#8B7355" />
+              <ellipse cx="0" cy="10" rx="16" ry="20" fill="#A8967C" opacity="0.7" />
+              <ellipse cx="-6" cy="12" rx="12" ry="16" fill="#9A8870" opacity="0.6" />
+              <ellipse cx="6" cy="14" rx="10" ry="14" fill="#B0A090" opacity="0.5" />
+            </g>
+
+            {/* Mandap / Venue Building */}
+            <g transform="translate(200, 80)">
+              {/* Base */}
+              <rect x="-25" y="20" width="50" height="35" rx="4" fill="#F5E6D3" stroke="#C65D1E" strokeWidth="1.5" opacity="0.9" />
+              
+              {/* Roof */}
+              <path d="M -30 20 L 0 5 L 30 20 Z" fill="#C65D1E" opacity="0.8" />
+              <path d="M -28 20 L 0 7 L 28 20 Z" fill="#D4885A" opacity="0.6" />
+              
+              {/* Dome on top */}
+              <ellipse cx="0" cy="5" rx="8" ry="6" fill="#C65D1E" opacity="0.7" />
+              <circle cx="0" cy="2" r="3" fill="#F4C5B8" />
+              
+              {/* Door */}
+              <rect x="-8" y="35" width="16" height="20" rx="8" fill="#C65D1E" opacity="0.4" />
+              
+              {/* Decorative elements */}
+              <circle cx="-15" cy="30" r="2" fill="#F4C5B8" opacity="0.8" />
+              <circle cx="15" cy="30" r="2" fill="#F4C5B8" opacity="0.8" />
+            </g>
+
+            {/* Flowers - scattered */}
+            <g opacity="0.6">
+              <circle cx="50" cy="145" r="3" fill="#F4C5B8" />
+              <circle cx="54" cy="148" r="2.5" fill="#E8B4A8" />
+              <circle cx="140" cy="125" r="2.5" fill="#F4C5B8" />
+              <circle cx="260" cy="120" r="3" fill="#E8B4A8" />
+              <circle cx="350" cy="135" r="2.5" fill="#F4C5B8" />
+            </g>
+
+            {/* Pulsing Location Pin - Heart shaped */}
+            <g transform="translate(200, 120)">
+              <g className="location-pin-pulse">
+                {/* Heart pin shadow */}
+                <ellipse cx="0" cy="22" rx="6" ry="2" fill="#3E2A24" opacity="0.15" />
+                
+                {/* Heart location pin */}
+                <path
+                  d="M 0 20 C -1 18, -2 16, -2 14 C -2 11, 0 9, 0 9 C 0 9, 2 11, 2 14 C 2 16, 1 18, 0 20 Z M -2 14 C -2 13, -1 11.5, 0 11 C 1 11.5, 2 13, 2 14 C 2 15, 1 16, 0 16 C -1 16, -2 15, -2 14 Z"
+                  fill="#C65D1E"
+                  stroke="#8B4513"
+                  strokeWidth="0.5"
+                />
+                
+                {/* Heart inner glow */}
+                <ellipse cx="0" cy="13" rx="1.5" ry="1.5" fill="#F4C5B8" opacity="0.8" />
+              </g>
+            </g>
+
+            {/* CSS Animation for pulsing pin */}
+            <style>{`
+              @keyframes pinPulse {
+                0%, 100% { transform: scale(1) translateY(0); }
+                50% { transform: scale(1.1) translateY(-3px); }
+              }
+              .location-pin-pulse {
+                animation: pinPulse 2s ease-in-out infinite;
+                transform-origin: center;
+              }
+            `}</style>
+
+            {/* Venue name */}
+            <text
+              x="200"
+              y="175"
+              textAnchor="middle"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '14px',
+                fontStyle: 'italic',
+                fill: '#3E2A24',
+                fontWeight: 600
+              }}
+            >
+              {venue}
+            </text>
+          </svg>
+
+          {/* Hover hint */}
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+            <svg className="w-4 h-4" style={{ color: '#C65D1E' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span style={{ fontFamily: "'Crimson Text', serif", color: '#5A4A3F', fontWeight: 500 }}>
+              Click to open directions
+            </span>
+          </div>
+        </div>
+      </motion.a>
+    </motion.div>
+  )
+}
+
 // Premium Full-Screen Event Detail Overlay
 function EventDetailOverlay({ event, isOpen, onClose }) {
   if (!event) return null
@@ -277,13 +473,18 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
         <>
           {/* Background Image Layer - Fades in then blurs */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.1, filter: 'blur(0px)' }}
             animate={{ 
               opacity: 1,
               scale: 1,
+              filter: 'blur(6px)',
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ 
+              opacity: { duration: 1, ease: [0.25, 0.1, 0.25, 1] },
+              scale: { duration: 1, ease: [0.25, 0.1, 0.25, 1] },
+              filter: { duration: 0.8, delay: 1.2, ease: [0.25, 0.1, 0.25, 1] }
+            }}
             className="fixed inset-0 z-50"
             style={{
               backgroundImage: `url(${backgroundImage})`,
@@ -296,14 +497,14 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
           <motion.div
             initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             animate={{ 
-              opacity: 1,
+              opacity: 0.9,
               backdropFilter: 'blur(40px)',
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="fixed inset-0 z-50"
             style={{
-              background: 'radial-gradient(circle at 20% 30%, rgba(198, 93, 30, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(107, 94, 80, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(62, 42, 36, 0.08) 0%, transparent 70%)'
+              background: 'radial-gradient(circle at 50% 50%, rgba(245, 230, 211, 1) 0%, rgba(240, 225, 210, 0.95) 60%, rgba(235, 220, 205, 0.9) 100%), radial-gradient(circle at 30% 40%, rgba(245, 230, 211, 0.85) 0%, rgba(230, 215, 200, 0.7) 40%), radial-gradient(circle at 70% 60%, rgba(240, 225, 210, 0.75) 0%, rgba(225, 210, 195, 0.6) 40%), radial-gradient(circle at 20% 30%, rgba(198, 93, 30, 0.75) 0%, rgba(180, 120, 80, 0.6) 50%), radial-gradient(circle at 80% 70%, rgba(107, 94, 80, 0.7) 0%, rgba(130, 110, 90, 0.55) 50%)'
             }}
           />
 
@@ -317,17 +518,16 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
             onClick={onClose}
             style={{
               background: `
-                radial-gradient(ellipse at 15% 25%, rgba(245, 230, 211, 0.35) 0%, transparent 35%),
-                radial-gradient(ellipse at 85% 15%, rgba(198, 93, 30, 0.20) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 80%, rgba(107, 94, 80, 0.28) 0%, transparent 45%),
-                radial-gradient(ellipse at 25% 75%, rgba(90, 74, 63, 0.24) 0%, transparent 38%),
-                radial-gradient(ellipse at 50% 50%, rgba(245, 230, 211, 0.32) 0%, transparent 55%),
-                radial-gradient(circle at 40% 60%, rgba(122, 107, 95, 0.22) 0%, transparent 42%),
-                linear-gradient(135deg, rgba(245, 230, 211, 0.38) 0%, rgba(198, 93, 30, 0.22) 50%, rgba(107, 94, 80, 0.30) 100%)
+                radial-gradient(ellipse at 15% 25%, rgba(245, 230, 211, 1) 0%, rgba(245, 230, 211, 0.95) 35%),
+                radial-gradient(ellipse at 85% 15%, rgba(198, 93, 30, 0.3) 0%, rgba(200, 100, 40, 0.15) 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(107, 94, 80, 0.4) 0%, rgba(110, 100, 80, 0.2) 45%),
+                radial-gradient(ellipse at 25% 75%, rgba(90, 74, 63, 0.35) 0%, rgba(100, 80, 70, 0.15) 38%),
+                radial-gradient(ellipse at 50% 50%, rgba(245, 230, 211, 0.9) 0%, rgba(240, 225, 210, 0.5) 55%),
+                radial-gradient(circle at 40% 60%, rgba(122, 107, 95, 0.3) 0%, rgba(130, 115, 100, 0.1) 42%),
+                linear-gradient(135deg, rgba(245, 230, 211, 1) 0%, rgba(220, 180, 140, 0.9) 50%, rgba(200, 160, 130, 0.85) 100%)
               `,
               mixBlendMode: 'multiply',
-              opacity: 0.75,
-              filter: 'blur(80px)'
+              opacity: 1,
             }}
           />
 
@@ -685,6 +885,12 @@ export default function Events({ events = defaultEvents, title = 'Celebrate With
                     {monthDay}
                   </p>
                 </div>
+
+                {/* Illustrated Map */}
+                <IllustratedMap 
+                  venue={dayEvents[0].venue}
+                  address={dayEvents[0].address}
+                />
 
                 {/* Events for this day */}
                 <div>
