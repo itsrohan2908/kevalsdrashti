@@ -542,7 +542,7 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
             {/* Close Button - Minimal and easily findable */}
             <motion.button
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
+              animate={{ opacity: 1 }}
               whileHover={{ opacity: 1, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               exit={{ opacity: 0 }}
@@ -568,8 +568,9 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
               type="button"
             >
               <svg 
+              // 6B5E50
                 className="w-4 h-4" 
-                style={{ color: '#6B5E50' }} 
+                style={{ color: '#1f1b17' }} 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
