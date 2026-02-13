@@ -21,6 +21,7 @@ export default function MusicToggle() {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0 // Start silent for smooth fade
+      audioRef.current.preload = 'auto' // Preload for faster playback
     }
 
     // Cleanup on unmount
@@ -40,10 +41,10 @@ export default function MusicToggle() {
       setIsPlaying(true)
       localStorage.setItem('weddingMusicEnabled', 'true')
 
-      // Fade in over 2 seconds
+      // Fade in over 1 second for quick start
       let volume = 0
       const targetVolume = 0.4 // Subtle background volume
-      const fadeStep = targetVolume / 40 // 40 steps over 2 seconds
+      const fadeStep = targetVolume / 20 // 20 steps over 1 second
 
       fadeIntervalRef.current = setInterval(() => {
         if (volume < targetVolume) {
