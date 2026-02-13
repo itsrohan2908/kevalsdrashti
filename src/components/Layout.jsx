@@ -5,7 +5,10 @@
  * - Accessible skip-to-content link
  * - ARIA roles and landmarks
  * - Footer with contact info
+ * - Background music toggle
  */
+
+import MusicToggle from './MusicToggle'
 
 export default function Layout({ children }) {
 
@@ -39,6 +42,9 @@ export default function Layout({ children }) {
           </p>
         </div>
       </footer>
+
+      {/* Music Toggle - Floating Button */}
+      <MusicToggle />
     </div>
   )
 }
