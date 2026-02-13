@@ -31,9 +31,9 @@ export default function Greetings() {
   return (
     <section 
       ref={sectionRef}
-      className="bg-gradient-to-b from-white via-amber-50/30 to-white py-20 md:py-32 lg:py-40"
+      className="min-h-screen md:min-h-0 bg-gradient-to-b from-white via-amber-50/30 to-white py-16 md:py-32 lg:py-40 flex items-center"
     >
-      <div className="container mx-auto px-6 md:px-12 max-w-4xl">
+      <div className="container mx-auto px-6 md:px-12 max-w-4xl w-full">
         <div 
           className={`text-center transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
