@@ -539,40 +539,38 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
             transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 lg:p-12"
           >
-            {/* Close Button - Outside content container for better accessibility */}
+            {/* Close Button - Minimal and distant */}
             <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              whileHover={{ opacity: 1, scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.6 }}
               onClick={(e) => {
                 e.stopPropagation()
                 onClose()
               }}
               className="
-                fixed top-4 right-4 md:top-6 md:right-6
-                w-12 h-12 md:w-11 md:h-11
+                fixed top-8 right-8 md:top-10 md:right-10
+                w-10 h-10 md:w-9 md:h-9
                 flex items-center justify-center 
                 rounded-full 
-                bg-white/90 hover:bg-white 
-                backdrop-blur-md 
-                shadow-lg hover:shadow-xl
+                bg-transparent hover:bg-primary/5
                 transition-all duration-300
-                border border-primary/10
                 z-[60]
                 cursor-pointer
-                active:scale-95
               "
               aria-label="Close event details"
               type="button"
             >
               <svg 
-                className="w-5 h-5 md:w-4 md:h-4" 
-                style={{ color: '#3E2A24' }} 
+                className="w-4 h-4 md:w-3.5 md:h-3.5" 
+                style={{ color: '#5A4A3F' }} 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
-                strokeWidth={2}
+                strokeWidth={1.5}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
