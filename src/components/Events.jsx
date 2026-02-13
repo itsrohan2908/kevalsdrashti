@@ -98,7 +98,7 @@ const defaultEvents = [
   },
   {
     id: 7,
-    name: 'Lagan',
+    name: 'Marriage',
     date: '2026-10-15',
     startTime: '10:00',
     endTime: '12:30',
