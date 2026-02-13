@@ -539,12 +539,12 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
             transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 lg:p-12"
           >
-            {/* Close Button - Minimal and distant */}
+            {/* Close Button - Minimal and easily findable */}
             <motion.button
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              whileHover={{ opacity: 1, scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              animate={{ opacity: 0.6 }}
+              whileHover={{ opacity: 1, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.6 }}
               onClick={(e) => {
@@ -552,11 +552,14 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
                 onClose()
               }}
               className="
-                fixed top-8 right-8 md:top-10 md:right-10
-                w-10 h-10 md:w-9 md:h-9
+                fixed top-6 right-6 md:top-8 md:right-8
+                w-11 h-11 md:w-10 md:h-10
                 flex items-center justify-center 
-                rounded-full 
-                bg-transparent hover:bg-primary/5
+                rounded-full
+                bg-gradient-to-br from-primary/8 to-primary/12
+                hover:from-primary/15 hover:to-primary/20
+                border border-primary/15
+                backdrop-blur-sm
                 transition-all duration-300
                 z-[60]
                 cursor-pointer
@@ -565,8 +568,8 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
               type="button"
             >
               <svg 
-                className="w-4 h-4 md:w-3.5 md:h-3.5" 
-                style={{ color: '#5A4A3F' }} 
+                className="w-4 h-4" 
+                style={{ color: '#6B5E50' }} 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
