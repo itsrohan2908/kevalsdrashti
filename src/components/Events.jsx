@@ -537,21 +537,50 @@ function EventDetailOverlay({ event, isOpen, onClose }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-8 md:p-12 pointer-events-none"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 lg:p-12"
           >
-            <div className="pointer-events-auto relative w-full h-full flex items-center justify-center">
-              {/* Close Button */}
-              <button
-                onClick={onClose}
-                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 hover:bg-primary/20 backdrop-blur-sm transition-colors group border border-primary/25"
-                aria-label="Close"
+            {/* Close Button - Outside content container for better accessibility */}
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, delay: 0.6 }}
+              onClick={(e) => {
+                e.stopPropagation()
+                onClose()
+              }}
+              className="
+                fixed top-4 right-4 md:top-6 md:right-6
+                w-12 h-12 md:w-11 md:h-11
+                flex items-center justify-center 
+                rounded-full 
+                bg-white/90 hover:bg-white 
+                backdrop-blur-md 
+                shadow-lg hover:shadow-xl
+                transition-all duration-300
+                border border-primary/10
+                z-[60]
+                cursor-pointer
+                active:scale-95
+              "
+              aria-label="Close event details"
+              type="button"
+            >
+              <svg 
+                className="w-5 h-5 md:w-4 md:h-4" 
+                style={{ color: '#3E2A24' }} 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                strokeWidth={2}
               >
-                <svg className="w-5 h-5 transition-colors" style={{ color: '#2A1D16' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </motion.button>
+
+            <div className="pointer-events-none relative w-full h-full flex items-center justify-center">
               
-              <div className="relative space-y-6 text-center max-w-2xl">
+              <div className="pointer-events-auto relative space-y-6 text-center max-w-2xl px-4">
                 {/* Event Name */}
                 <motion.h2
                   initial={{ opacity: 0 }}
